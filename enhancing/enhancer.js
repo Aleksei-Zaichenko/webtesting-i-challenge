@@ -17,7 +17,28 @@ function succeed(item) {
 }
 
 function fail(item) {
-  return { ...item };
+  let newObj = {}
+
+  if(item.enhancement < 15){
+    newObj = {
+      ...item,
+      durability: item.durability - 5 
+    }
+  } else if(item.enhancement >= 15){
+    newObj = {
+      ...item,
+      durability: item.durability - 10 
+    }
+    if(item.enhancement > 16){
+      newObj = {
+        name: item.name,
+        durability: item.durability - 10, 
+        enhancement: item.enhancement - 1 
+      }
+    }
+  }
+
+  return newObj;
 }
 
 function get(item) {

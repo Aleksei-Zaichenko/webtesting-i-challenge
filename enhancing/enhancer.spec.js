@@ -74,8 +74,41 @@ describe('.enhancer.js', ()=>{
 
     //testing .fail function from enhancer
     describe('enhancer.fail',() => {
-        it('.fail function must be called and return some values', ()=>{
-            expect(enhancer.fail(1,2,2,2)).toBeTruthy();
+        it('.fail function must be called and return a new object with decreased durability level depending on enhancement level', ()=>{
+
+            //If the item's enhancement is less than 15, the durability of the item is decreased by 5.
+            expect(enhancer.fail({
+                name: 'axe', 
+                durability: 100, 
+                enhancement: 14
+            })).toMatchObject({
+                name: 'axe', 
+                durability: 95, 
+                enhancement: 14
+            });
+
+            //If the item's enhancement is 15 or more, the durability of the item is decreased by 10.
+            expect(enhancer.fail({
+                name: 'axe', 
+                durability: 57, 
+                enhancement: 15
+            })).toMatchObject({
+                name: 'axe', 
+                durability: 47, 
+                enhancement: 15
+            });
+            
+            //If the item's enhancement level is greater than 16, 
+            //the enhancement level decreases by 1 (17 goes down to 16, 18 goes down to 17).
+            expect(enhancer.fail({
+                name: 'axe', 
+                durability: 57, 
+                enhancement: 18
+            })).toMatchObject({
+                name: 'axe', 
+                durability: 47, 
+                enhancement: 17
+            });
         })
     })
 })
