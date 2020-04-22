@@ -3,15 +3,6 @@ const enhancer = require('./enhancer.js');
 
 describe('.enhancer.js', ()=>{
 
-    //for stretch
-    //testing .get function from enhancer
-    // describe('enhancer.get',() => {
-    //     it('.get function must be called and return some values', ()=>{
-    //         expect(enhancer.get(1,2,2,2)).toBeTruthy();
-    //     })
-
-    // })
-
     //testing .repair function from enhancer
     describe('enhancer.repair', () => {
         it('.repair function must be called and return an object with durability property equals to 100', ()=>{
@@ -110,5 +101,14 @@ describe('.enhancer.js', ()=>{
                 enhancement: 17
             });
         })
+    })
+
+    //for stretch
+    //testing .get function from enhancer
+    describe('enhancer.get',() => {
+        it('.get function must be called and return a new object with the name property modified', ()=>{
+            expect(enhancer.get(1,2,2,2)).toBeTruthy();
+        })
+
     })
 })

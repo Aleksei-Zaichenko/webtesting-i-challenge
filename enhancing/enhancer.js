@@ -18,21 +18,28 @@ function succeed(item) {
 
 function fail(item) {
   let newObj = {}
+  let objDurability = 0;
 
   if(item.enhancement < 15){
+
+    item.durability > 0 ? objDurability = item.durability - 5 : objDurability = 0;
+
     newObj = {
       ...item,
-      durability: item.durability - 5 
+      durability: objDurability
     }
   } else if(item.enhancement >= 15){
+
+    item.durability > 0 ? objDurability = item.durability - 10 : objDurability = 0;
+
     newObj = {
       ...item,
-      durability: item.durability - 10 
+      durability: objDurability
     }
     if(item.enhancement > 16){
       newObj = {
         name: item.name,
-        durability: item.durability - 10, 
+        durability: objDurability,
         enhancement: item.enhancement - 1 
       }
     }
