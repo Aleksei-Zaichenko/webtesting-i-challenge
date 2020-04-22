@@ -24,6 +24,51 @@ describe('.enhancer.js', ()=>{
                 durability: 100, 
                 enhancement: '20'
             });
+
+            expect(enhancer.repair({
+                name: 'axe', 
+                durability: 57, 
+                enhancement: '20'
+            })).toMatchObject({
+                name: 'axe', 
+                durability: 100, 
+                enhancement: '20'
+            });
+        })
+    })
+
+    //testing .succeed function from enhancer
+    describe('enhancer.succeed',() => {
+        it('.succeed function must be called and return a new object with enhancement property increased by 1', () => {
+            expect(enhancer.succeed({
+                name: 'axe', 
+                durability: 100, 
+                enhancement: 20
+            })).toMatchObject({
+                name: 'axe', 
+                durability: 100, 
+                enhancement: 20
+            });
+
+            expect(enhancer.succeed({
+                name: 'axe', 
+                durability: 57, 
+                enhancement: 19
+            })).toMatchObject({
+                name: 'axe', 
+                durability: 57, 
+                enhancement: 20
+            });
+
+            expect(enhancer.succeed({
+                name: 'axe', 
+                durability: 57, 
+                enhancement: 2
+            })).toMatchObject({
+                name: 'axe', 
+                durability: 57, 
+                enhancement: 3
+            });
         })
     })
 
@@ -31,13 +76,6 @@ describe('.enhancer.js', ()=>{
     describe('enhancer.fail',() => {
         it('.fail function must be called and return some values', ()=>{
             expect(enhancer.fail(1,2,2,2)).toBeTruthy();
-        })
-    })
-    
-    //testing .succeed function from enhancer
-    describe('enhancer.succeed',() => {
-        it('.succeed function must be called and return some values', ()=>{
-            expect(enhancer.succeed(1,2,2,2)).toBeTruthy();
         })
     })
 })
